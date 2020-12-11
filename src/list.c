@@ -3,7 +3,7 @@
 void  *create_chunk(size_t size) {
   char     *ptr;
   size_t   rsize;
-  int      i;
+  size_t   i;
 
   rsize = sizeof(void *) + size;
   if (!(ptr = malloc(rsize)))

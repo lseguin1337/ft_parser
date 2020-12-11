@@ -9,7 +9,7 @@ int ft_strlen(char *s) {
 }
 
 void *ft_memcpy(void *dest, void *src, size_t size) {
-  int i;
+  size_t i;
 
   i = 0;
   while (i < size) {
@@ -20,7 +20,7 @@ void *ft_memcpy(void *dest, void *src, size_t size) {
 }
 
 void *ft_memset(void *dest, char c, size_t size) {
-  int i;
+  size_t i;
 
   i = 0;
   while (i < size)
@@ -28,9 +28,9 @@ void *ft_memset(void *dest, char c, size_t size) {
   return (dest);
 }
 
-char *ft_strndup(char *s, int size) {
+char *ft_strndup(char *s, size_t size) {
   char *n;
-  int i = 0;
+  size_t i = 0;
 
   if (!(n = malloc(sizeof(char) * (size + 1))))
     return (NULL);
