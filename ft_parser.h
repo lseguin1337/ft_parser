@@ -43,6 +43,7 @@ t_parser_ctx           *map(t_parser_ctx *child, t_map fn);
 t_parser_ctx           *pick(t_parser_ctx *child, int index);
 t_parser_ctx           *mapTo(t_parser_ctx *child, void *data);
 t_parser_ctx           *joinCharacters(t_parser_ctx *child);
+t_parser_ctx           *integer();
 
 t_parser_ctx           *debug(char *label, t_parser_ctx *child);
 

@@ -37,7 +37,8 @@ SRC = ./src/eof.c \
 ./src/delete_context.c \
 ./src/character.c \
 ./src/exact.c \
-./src/not.c
+./src/not.c \
+./src/integer.c
 OBJ = $(SRC:.c=.o)
 INC = ./inc/
 
