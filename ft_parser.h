@@ -55,8 +55,10 @@ void                   set_next_chunk(void *ptr, void *next);
 void                   push_chunk(void **first, void *last);
 int                    count_chunk(void *ptr);
 
+// libft
 char                   *ft_strndup(char *s, int size);
 void                   *ft_memcpy(void *dest, void *src, size_t size);
+void                   *ft_memset(void *dest, char c, size_t size);
 int                    ft_strlen(char *s);
 
 #endif
