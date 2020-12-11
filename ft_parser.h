@@ -42,6 +42,7 @@ t_parser_ctx           *eof();
 t_parser_ctx           *map(t_parser_ctx *child, t_map fn);
 t_parser_ctx           *pick(t_parser_ctx *child, int index);
 t_parser_ctx           *mapTo(t_parser_ctx *child, void *data);
+t_parser_ctx           *joinCharacters(t_parser_ctx *child);
 
 t_parser_ctx           *debug(char *label, t_parser_ctx *child);
 
@@ -52,6 +53,7 @@ void                   del_chunk(void *ptr);
 void                   *get_next_chunk(void *ptr);
 void                   set_next_chunk(void *ptr, void *next);
 void                   push_chunk(void **first, void *last);
+int                    count_chunk(void *ptr);
 
 char                   *ft_strndup(char *s, int size);
 void                   *ft_memcpy(void *dest, void *src, size_t size);

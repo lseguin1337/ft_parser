@@ -44,3 +44,13 @@ void del_chunk(void *ptr) {
 
   free(&pptr[-1]);
 }
+
+int count_chunk(void *ptr) {
+  int i = 0;
+
+  while (ptr) {
+    ptr = get_next_chunk(ptr);
+    i++;
+  }
+  return i;
+}
