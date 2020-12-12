@@ -27,17 +27,3 @@ void *ft_memset(void *dest, char c, size_t size) {
     ((char *)dest)[i++] = c;
   return (dest);
 }
-
-char *ft_strndup(char *s, size_t size) {
-  char *n;
-  size_t i = 0;
-
-  if (!(n = malloc(sizeof(char) * (size + 1))))
-    return (NULL);
-  while (s[i] && i < size) {
-    n[i] = s[i];
-    i++;
-  }
-  n[i] = '\0';
-  return (n);
-}
