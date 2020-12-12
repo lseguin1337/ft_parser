@@ -17,20 +17,25 @@ static void set_options(t_flag_options *options, t_parser_match *match) {
   }
 }
 
-static t_parser_match *create_flag(t_parser_match *match) {
-  t_parser_match *item = match->data;
-  t_flag *flag;
+static int get_number(t_parser_match *match) {
+  if (!match->data)
+    return (0);
+  return *(int *)match->data;
+}
 
-  if (!(flag = malloc(sizeof(t_flag))))
-    return (NULL);
-  ft_memset(flag, '\0', sizeof(t_flag));
-  set_options(&flag->options, NEXT(item)->data);
-  flag->marge = (int)(NEXT(item)->data);
-  flag->precision = (int)(NEXT(item)->data);
-  flag->long_flag = count_chunk(NEXT(item)->data);
-  flag->format = NEXT(item)->data;
+static t_parser_match *create_flag(t_parser_match *match) {
+  t_parser_match *item;
+  t_flag flag;
+
+  item = match->data;
+  ft_memset(&flag, '\0', sizeof(flag));
+  set_options(&flag.options, ((t_parser_match *)get_chunk(item, 1))->data);
+  flag.marge = get_number(get_chunk(item, 2));
+  flag.precision = get_number(get_chunk(item, 3));
+  flag.long_flag = count_chunk(((t_parser_match *)get_chunk(item, 4))->data);
+  flag.format = ((t_parser_match *)get_chunk(item, 5))->data;
   destroyMatch(match);
-  return (createMatch(flag, &free));
+  return (createMatch(&flag, NULL, sizeof(flag)));
 }
 
 static t_parser_ctx *precision() {

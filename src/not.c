@@ -10,7 +10,7 @@ static t_parser_match *notFn(t_parser_ctx *ctx, char **s) {
     *s = orig;
     return (NULL);
   }
-  return (createMatch(NULL, NULL));
+  return (createMatch(NULL, NULL, 0));
 }
 
 t_parser_ctx *not(t_parser_ctx *child) {

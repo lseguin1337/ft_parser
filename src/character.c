@@ -7,13 +7,13 @@ static t_parser_match *charactersFn(t_parser_ctx *ctx, char **s) {
   if (!value) {
     if (!(*s)[0])
       return (NULL);
-    return (createMatch((*s)++, NULL));
+    return (createMatch((*s)++, NULL, sizeof(char)));
   }
   while ((*s)[0] != value[i] && value[i])
     i++;
   if (!value[i])
     return (NULL);
-  return (createMatch((*s)++, NULL));
+  return (createMatch((*s)++, NULL, sizeof(char)));
 }
 
 t_parser_ctx *characters(char *value) {

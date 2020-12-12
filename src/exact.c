@@ -8,7 +8,7 @@ static t_parser_match *exactFn(t_parser_ctx *ctx, char **s) {
     i++;
   if (!value[i]) {
     (*s) += i;
-    return (createMatch(value, NULL));
+    return (createMatch(value, NULL, 0));
   }
   return (NULL);
 }

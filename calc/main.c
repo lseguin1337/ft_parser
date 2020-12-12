@@ -1,6 +1,6 @@
 #include "calc.h"
 
-static long operation(char operator, long left, long right) {
+static int operation(char operator, int left, int right) {
   if (operator == '-') {
     return left - right;
   } else if (operator == '+') {
@@ -18,17 +18,17 @@ static t_parser_match *compute(t_parser_match *match) {
   t_parser_match *seq;
   t_parser_match *op;
   t_parser_match *right_term;
-  long value = (long)first_term->data;
+  int value = *((int *)first_term->data);
   
   seq = ((t_parser_match *)get_next_chunk(first_term))->data;
   while (seq) {
     op = get_chunk((t_parser_match *)seq->data, 1);
     right_term = get_chunk((t_parser_match *)seq->data, 3);
-    value = operation(((char *)op->data)[0], value, (long)right_term->data);
+    value = operation(((char *)op->data)[0], value, *(int *)right_term->data);
     seq = get_next_chunk(seq);
   }
   destroyMatch(match);
-  return (createMatch((void *)value, NULL));
+  return (createMatch(&value, NULL, sizeof(value)));
 }
 
 t_parser_ctx *whitespace() {
@@ -92,7 +92,7 @@ int main() {
 
   calc = Calc();
   if ((match = parse(calc, "2 * (3 + 4)"))) {
-    printf("Result: %ld\n", (long)match->data);
+    printf("Result: %d\n", *(int *)match->data);
   } else {
     printf("parsing error\n");
   }

@@ -4,8 +4,8 @@ t_parser_ctx *printf_parser() {
   return (pick(
     sequenceOf(
       zeroOrMore(anyOf(
-        text(),
-        flag(),
+        debug("text", text()),
+        debug("flag", flag()),
         NULL
       )),
       eof(),

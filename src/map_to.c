@@ -6,7 +6,7 @@ static t_parser_match *mapToFn(t_parser_ctx *ctx, char **s) {
 
   if ((match = child->fn(child, s))) {
     destroyMatch(match);
-    return (createMatch(ctx->data, NULL));
+    return (createMatch(ctx->data, NULL, 0));
   }
   return (NULL);
 }

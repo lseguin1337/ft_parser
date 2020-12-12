@@ -12,7 +12,7 @@ static t_parser_match *pickFn(t_parser_ctx *ctx, char **s) {
   previous = get_chunk(match->data, index - 1);
   if (!(target = get_chunk(match->data, index))) {
     destroyMatch(match);
-    return (createMatch(NULL, NULL));
+    return (createMatch(NULL, NULL, 0));
   }
   if (!previous)
     match->data = get_next_chunk(target);  

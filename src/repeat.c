@@ -22,7 +22,7 @@ static t_parser_match *repeatFn(t_parser_ctx *ctx, char **s) {
     destroyMatch(first);
     return (NULL);
   }
-  return (createMatch(first, (void *)&destroyMatch));
+  return (createMatch(first, (void *)&destroyMatch, 0));
 }
 
 t_parser_ctx *repeat(t_parser_ctx *child, int min, int max) {

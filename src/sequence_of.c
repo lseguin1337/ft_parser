@@ -17,7 +17,7 @@ static t_parser_match *sequenceOfFn(t_parser_ctx *ctx, char **s) {
     push_chunk((void **)&first, match);
     child = get_next_chunk(child);
   }
-  return (createMatch(first, (void *)&destroyMatch));
+  return (createMatch(first, (void *)&destroyMatch, 0));
 }
 
 t_parser_ctx *sequenceOf(t_parser_ctx *first, ...) {

@@ -10,7 +10,7 @@ static t_parser_match *oneOrMoreFn(t_parser_ctx *ctx, char **s) {
     push_chunk((void **)&first, match);
   if (!first)
     return (NULL);
-  return (createMatch(first, (void *)&destroyMatch));
+  return (createMatch(first, (void *)&destroyMatch, 0));
 }
 
 t_parser_ctx *oneOrMore(t_parser_ctx *child) {

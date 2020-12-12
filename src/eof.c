@@ -4,7 +4,7 @@ static t_parser_match *eofFn(t_parser_ctx *ctx, char **s) {
   (void)ctx;
   if ((*s)[0] != '\0')
     return (NULL);
-  return (createMatch(NULL, NULL));
+  return (createMatch(NULL, NULL, 0));
 }
 
 t_parser_ctx *eof() {

@@ -26,7 +26,7 @@ typedef t_parser_match *(*t_parse_fn)(t_parser_ctx *ctx, char **s);
 t_parser_ctx           *createContext(t_parse_fn fn, t_parser_ctx *child, void *data, size_t size);
 void                   destroyContext(t_parser_ctx *ctx);
 
-t_parser_match         *createMatch(void *data, void (*del)(void *));
+t_parser_match         *createMatch(void *data, void (*del)(void *), size_t size);
 void                   destroyMatch(t_parser_match *self);
 
 t_parser_ctx           *oneOrMore(t_parser_ctx *child);
