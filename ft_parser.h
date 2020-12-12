@@ -20,6 +20,7 @@ typedef struct         s_parser_ctx {
   void                 (*destroy)(void *data);
 }                      t_parser_ctx;
 
+typedef t_parser_ctx   *(*t_sub_ctx)();
 typedef t_parser_match *(*t_parse_fn)(t_parser_ctx *ctx, char **s);
 
 t_parser_ctx           *createContext(t_parse_fn fn, t_parser_ctx *child, void *data, size_t size);
@@ -44,6 +45,7 @@ t_parser_ctx           *pick(t_parser_ctx *child, int index);
 t_parser_ctx           *mapTo(t_parser_ctx *child, void *data);
 t_parser_ctx           *joinCharacters(t_parser_ctx *child);
 t_parser_ctx           *integer();
+t_parser_ctx           *recursive(t_sub_ctx sub);
 
 t_parser_ctx           *debug(char *label, t_parser_ctx *child);
 
@@ -55,6 +57,7 @@ void                   *get_next_chunk(void *ptr);
 void                   set_next_chunk(void *ptr, void *next);
 void                   push_chunk(void **first, void *last);
 int                    count_chunk(void *ptr);
+void                   *get_chunk(void *ptr, int index);
 
 // libft
 char                   *ft_strndup(char *s, int size);

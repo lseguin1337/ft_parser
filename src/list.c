@@ -51,3 +51,9 @@ int count_chunk(void *ptr) {
   }
   return i;
 }
+
+void *get_chunk(void *ptr, int index) {
+  while (index-- && ptr)
+    ptr = get_next_chunk(ptr);
+  return (ptr);
+}

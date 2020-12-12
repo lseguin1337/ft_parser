@@ -38,7 +38,8 @@ SRC = ./src/eof.c \
 ./src/character.c \
 ./src/exact.c \
 ./src/not.c \
-./src/integer.c
+./src/integer.c \
+./src/recursive.c
 OBJ = $(SRC:.c=.o)
 INC = ./inc/
 
