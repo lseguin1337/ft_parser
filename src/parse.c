@@ -9,7 +9,7 @@ t_parser_match *ft_parse_2(t_parser_factory factory, char *s) {
   t_parser_match *match;
 
   ctx = factory();
-  match = parse(ctx, s);
+  match = ft_parse(ctx, s);
   destroyContext(ctx);
   return match;
 }

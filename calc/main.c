@@ -87,7 +87,6 @@ t_parser_ctx *Calc() {
 }
 
 int main() {
-  t_parser_ctx *calc;
   t_parser_match *match;
 
   if ((match = ft_parse_2(Calc, "2 * (3 + 4)"))) {
