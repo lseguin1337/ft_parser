@@ -1,4 +1,4 @@
-# FT_Parser
+# ft_parser
 
 This library is a generic Grammar Library for the C language.
 
