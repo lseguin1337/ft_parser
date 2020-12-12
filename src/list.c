@@ -3,14 +3,11 @@
 void  *create_chunk(size_t size) {
   char     *ptr;
   size_t   rsize;
-  size_t   i;
 
   rsize = sizeof(void *) + size;
   if (!(ptr = malloc(rsize)))
     return (NULL);
-  i = 0;
-  while (i < rsize)
-    ptr[i++] = '\0';
+  ft_memset(ptr, '\0', rsize);
   return (&((void **)ptr)[1]);
 }
 

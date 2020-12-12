@@ -10,8 +10,7 @@ static t_parser_match *sequenceOfFn(t_parser_ctx *ctx, char **s) {
   child = ctx->child;
   while (child) {
     if (!(match = child->fn(child, s))) {
-      if (first)
-        destroyMatch(first);
+      destroyMatch(first);
       *s = orig;
       return (NULL);
     }
