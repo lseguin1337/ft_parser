@@ -90,8 +90,7 @@ int main() {
   t_parser_ctx *calc;
   t_parser_match *match;
 
-  calc = Calc();
-  if ((match = parse(calc, "2 * (3 + 4)"))) {
+  if ((match = ft_parse_2(Calc, "2 * (3 + 4)"))) {
     printf("Result: %d\n", *(int *)match->data);
   } else {
     printf("parsing error\n");
