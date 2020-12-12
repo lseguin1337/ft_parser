@@ -10,20 +10,27 @@
 #                                                                              #
 # **************************************************************************** #
 
+DEBUG_FILE_2:=./src/debug_dev.o
+DEBUG_FILE:=./src/debug.c
+ifdef DEV
+DEBUG_FILE_2:=./src/debug.o
+DEBUG_FILE=./src/debug_dev.c
+endif
+
 NAME=ftparser.a
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
 LDFLAGS=-L.
 LDLIBS=-lft
-SRC = ./src/eof.c \
+SRC = $(DEBUG_FILE) \
+./src/eof.c \
 ./src/create_context.c \
 ./src/list.c \
 ./src/map_to.c \
 ./src/create_match.c \
 ./src/pick.c \
 ./src/join_characters.c \
-./src/debug.c \
 ./src/zero_or_one.c \
 ./src/repeat.c \
 ./src/utils.c \
@@ -44,6 +51,8 @@ OBJ = $(SRC:.c=.o)
 INC = ./inc/
 
 $(NAME): $(OBJ)
+		@rm -rf $(DEBUG_FILE_2)
+		@rm -rf $(NAME)
 		ar rc $(NAME) $(OBJ)
 		ranlib $(NAME)
 

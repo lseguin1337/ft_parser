@@ -36,7 +36,7 @@ t_parser_ctx *whitespace() {
 }
 
 t_parser_ctx *Factor() {
-  return (anyOf(
+  return (debug("factor", anyOf(
     pick(sequenceOf(
       exact("("),
       whitespace(),
@@ -47,11 +47,11 @@ t_parser_ctx *Factor() {
     ), 2),
     integer(),
     NULL
-  ));
+  )));
 }
 
 t_parser_ctx *Term() {
-  return (map(sequenceOf(
+  return (debug("term", map(sequenceOf(
     Factor(),
     zeroOrMore(sequenceOf(
       whitespace(),
@@ -61,11 +61,11 @@ t_parser_ctx *Term() {
       NULL
     )),
     NULL
-  ), &compute));
+  ), &compute)));
 }
 
 t_parser_ctx *Expression() {
-  return (map(sequenceOf(
+  return (debug("expression", map(sequenceOf(
     Term(),
     zeroOrMore(sequenceOf(
       whitespace(),
@@ -75,7 +75,7 @@ t_parser_ctx *Expression() {
       NULL
     )),
     NULL
-  ), &compute));
+  ), &compute)));
 }
 
 t_parser_ctx *Calc() {

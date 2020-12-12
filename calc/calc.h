@@ -1,6 +1,7 @@
 #ifndef __FT_CALC__
 # define __FT_CALC__
 
+#include <stdio.h>
 #include "ft_parser.h"
 
 t_parser_ctx *Calc();

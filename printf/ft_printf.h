@@ -1,6 +1,7 @@
 #ifndef __FT_PRINTF_EXPRESSION__
 # define __FT_PRINTF_EXPRESSION__
 
+#include <stdio.h>
 #include "ft_parser.h"
 
 #define NEXT(x) ((t_parser_match *)(x = get_next_chunk(x)))
