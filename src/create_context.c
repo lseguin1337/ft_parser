@@ -17,6 +17,6 @@ t_parser_ctx *createContext(
   ctx->destroy = NULL;
   ctx->data = data;
   if (data_size > 0)
-    ctx->data = ft_memcpy((void *)&ctx[1], data, data_size);
+    ctx->data = ft_memcpy(&ctx[1], data, data_size);
   return (ctx);
 }
