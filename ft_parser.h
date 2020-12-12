@@ -49,7 +49,7 @@ t_parser_ctx           *recursive(t_parser_factory sub);
 
 t_parser_ctx           *debug(char *label, t_parser_ctx *child);
 
-void                   *parse(t_parser_ctx *ctx, char *s);
+t_parser_match         *parse(t_parser_ctx *ctx, char *s);
 
 void                   *create_chunk(size_t size);
 void                   del_chunk(void *ptr);
