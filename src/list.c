@@ -53,6 +53,8 @@ int count_chunk(void *ptr) {
 }
 
 void *get_chunk(void *ptr, int index) {
+  if (index < 0)
+    return (NULL);
   while (index-- && ptr)
     ptr = get_next_chunk(ptr);
   return (ptr);

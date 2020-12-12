@@ -1,5 +1,8 @@
 #include "ft_parser.h"
 
+/**
+ * TODO: Add private data like we have inside the context
+ */
 t_parser_match *createMatch(
   void *data,
   void (*destroy)(void *)
