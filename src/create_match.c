@@ -13,9 +13,7 @@ t_parser_match *createMatch(
     return (NULL);
   self->data = data;
   self->destroy = destroy;
-  if (size > 0) {
-    self->data = &self[1];
-    ft_memcpy(self->data, data, size);
-  }
+  if (size > 0)
+    self->data = ft_memcpy(&self[1], data, size);
   return (self);
 }
