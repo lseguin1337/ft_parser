@@ -1,11 +1,12 @@
 #include "ft_parser.h"
 
 static t_parser_match *zeroOrMoreFn(t_parser_ctx *ctx, char **s) {
-  t_parser_ctx *child = ctx->child;
+  t_parser_ctx *child;
   t_parser_match *first;
   t_parser_match *match;
   
   first = NULL;
+  child = ctx->child;
   while ((match = child->fn(child, s)))
     push_chunk((void **)&first, match);
   if (!first)

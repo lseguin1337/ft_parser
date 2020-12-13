@@ -1,9 +1,10 @@
 #include "ft_parser.h"
 
 static t_parser_match *charactersFn(t_parser_ctx *ctx, char **s) {
-  char *value = (char *)ctx->data;
+  char *value;
   int i = 0;
 
+  value = (char *)ctx->data;
   if (!value) {
     if (!(*s)[0])
       return (NULL);

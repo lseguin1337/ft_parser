@@ -12,8 +12,9 @@ void  *create_chunk(size_t size) {
 }
 
 void set_next_chunk(void *ptr, void *next) {
-  void **pptr = ptr;
+  void **pptr;
 
+  pptr = ptr;
   pptr[-1] = next;
 }
 
@@ -37,14 +38,16 @@ void push_chunk(void **first, void *last) {
 }
 
 void del_chunk(void *ptr) {
-  void **pptr = ptr;
+  void **pptr;
 
+  pptr = ptr;
   free(&pptr[-1]);
 }
 
 int count_chunk(void *ptr) {
-  int i = 0;
+  int i;
 
+  i = 0;
   while (ptr) {
     ptr = get_next_chunk(ptr);
     i++;

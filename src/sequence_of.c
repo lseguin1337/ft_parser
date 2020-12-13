@@ -1,11 +1,12 @@
 #include "ft_parser.h"
 
 static t_parser_match *sequenceOfFn(t_parser_ctx *ctx, char **s) {
-  char *orig = *s;
+  char *orig;
   t_parser_ctx *child;
   t_parser_match *first;
   t_parser_match *match;
    
+  orig = *s;
   first = NULL;
   child = ctx->child;
   while (child) {
