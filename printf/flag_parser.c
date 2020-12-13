@@ -30,6 +30,7 @@ static t_parser_match *create_flag(t_parser_match *match) {
   item = match->data;
   ft_memset(&flag, '\0', sizeof(flag));
   set_options(&flag.options, ((t_parser_match *)get_chunk(item, 1))->data);
+  flag.type = FLAG;
   flag.marge = get_number(get_chunk(item, 2));
   flag.precision = get_number(get_chunk(item, 3));
   flag.long_flag = count_chunk(((t_parser_match *)get_chunk(item, 4))->data);

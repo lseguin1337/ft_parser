@@ -13,13 +13,23 @@ typedef struct s_flag_options {
   int          space;
 }              t_flag_options;
 
+typedef enum     e_match_type {
+   TEXT = 1,
+   FLAG = 2
+}                t_match_type;
 typedef struct   s_flag {
+  t_match_type   type;
   int            marge;
   int            precision;
   int            long_flag;
   void           *format;
   t_flag_options options;
 }                t_flag;
+
+typedef struct   s_text {
+  t_match_type   type;
+  char           *value;
+}                t_text;
 
 t_parser_ctx *flag();
 t_parser_ctx *text();
