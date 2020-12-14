@@ -78,7 +78,7 @@ t_parser_ctx *Expression() {
   ), &compute)));
 }
 
-t_parser_ctx *Calc() {
+t_parser_ctx *CalcGrammar() {
   return (pick(sequenceOf(
     Expression(),
     eof(),
@@ -89,7 +89,7 @@ t_parser_ctx *Calc() {
 int main() {
   t_parser_match *match;
 
-  if ((match = ft_parse_2(Calc, "2 * (3 + 4)"))) {
+  if ((match = ft_parse_2(CalcGrammar, "2 * (3 + 4)"))) {
     printf("Result: %d\n", *(int *)match->data);
   } else {
     printf("parsing error\n");
