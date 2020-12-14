@@ -41,6 +41,7 @@ char *format_hex(t_flag *flag, va_list *args);
 char *format_integer(t_flag *flag, va_list *args);
 char *format_ptr(t_flag *flag, va_list *args);
 char *format_float(t_flag *flag, va_list *args);
+char *format_percent(t_flag *flag, va_list *args);
 
 void ft_printf(char *s, ...);
 

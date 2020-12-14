@@ -35,3 +35,9 @@ char *format_float(t_flag *flag, va_list *args) {
   (void)args;
   return NULL;
 }
+
+char *format_percent(t_flag *flag, va_list *args) {
+  (void)flag;
+  (void)args;
+  return NULL;
+}

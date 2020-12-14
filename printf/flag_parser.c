@@ -59,6 +59,7 @@ static t_parser_ctx *flagType() {
     mapTo(characters("p"), &format_ptr),
     mapTo(characters("f"), &format_float),
     mapTo(characters("x"), &format_hex),
+    mapTo(characters("%"), &format_percent),
     NULL
   ));
 }

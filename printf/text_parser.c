@@ -15,15 +15,11 @@ static t_parser_match *create_text(t_parser_match *match) {
 }
 
 static t_parser_ctx *character() {
-  return (anyOf(
-    exact("%%"),
-    pick(sequenceOf(
-      not(exact("%")),
-      characters(NULL),
-      NULL
-    ), 1),
+  return (pick(sequenceOf(
+    not(exact("%")),
+    characters(NULL),
     NULL
-  ));
+  ), 1));
 }
 
 t_parser_ctx *text() {
