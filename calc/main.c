@@ -103,6 +103,7 @@ int main() {
 
   if ((match = ft_parse(CalcGrammar, "2 * (3 + 4)"))) {
     printf("Result: %d\n", *(int *)match->data); // Output -> "Result: 14"
+    destroyMatch(match); // free the result
   } else {
     printf("parsing error\n");
   }
