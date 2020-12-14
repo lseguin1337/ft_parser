@@ -1,30 +1,34 @@
 #include "calc.h"
 
-static int operation(char operator, int left, int right) {
-  if (operator == '-') {
-    return left - right;
-  } else if (operator == '+') {
-    return left + right;
-  } else if (operator == '*') {
-    return left * right;
-  } else if (operator == '/') {
-    return left / right;
-  }
-  return -1;
+static int mult_operator(int left, int right) {
+  return left * right;
+}
+
+static int div_operator(int left, int right) {
+  return left / right;
+}
+
+static int add_operator(int left, int right) {
+  return left + right;
+}
+
+static int sub_operator(int left, int right) {
+  return left + right;
 }
 
 static t_parser_match *compute(t_parser_match *match) {
   t_parser_match *first_term = match->data;
   t_parser_match *seq;
-  t_parser_match *op;
-  t_parser_match *right_term;
-  int value = *((int *)first_term->data);
+  t_parser_match *tmp_term;
+  int (*operator)(int, int);
+  int value;
   
+  value = *(int *)first_term->data;
   seq = ((t_parser_match *)get_next_chunk(first_term))->data;
   while (seq) {
-    op = get_chunk((t_parser_match *)seq->data, 1);
-    right_term = get_chunk((t_parser_match *)seq->data, 3);
-    value = operation(((char *)op->data)[0], value, *(int *)right_term->data);
+    operator = ((t_parser_match *)get_chunk((t_parser_match *)seq->data, 1))->data;
+    tmp_term = get_chunk((t_parser_match *)seq->data, 3);
+    value = operator(value, *(int *)tmp_term->data);
     seq = get_next_chunk(seq);
   }
   destroyMatch(match);
@@ -55,7 +59,11 @@ t_parser_ctx *Term() {
     Factor(),
     zeroOrMore(sequenceOf(
       whitespace(),
-      characters("*/"),
+      anyOf(
+        mapTo(exact("*"), &mult_operator),
+        mapTo(exact("/"), &div_operator),
+        NULL
+      ),
       whitespace(),
       Factor(),
       NULL
@@ -69,7 +77,11 @@ t_parser_ctx *Expression() {
     Term(),
     zeroOrMore(sequenceOf(
       whitespace(),
-      characters("+-"),
+      anyOf(
+        mapTo(exact("+"), &add_operator),
+        mapTo(exact("-"), &sub_operator),
+        NULL
+      ),
       whitespace(),
       Term(),
       NULL
@@ -90,7 +102,7 @@ int main() {
   t_parser_match *match;
 
   if ((match = ft_parse(CalcGrammar, "2 * (3 + 4)"))) {
-    printf("Result: %d\n", *(int *)match->data);
+    printf("Result: %d\n", *(int *)match->data); // Output -> "Result: 14"
   } else {
     printf("parsing error\n");
   }
