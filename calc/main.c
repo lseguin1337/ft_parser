@@ -89,7 +89,7 @@ t_parser_ctx *CalcGrammar() {
 int main() {
   t_parser_match *match;
 
-  if ((match = ft_parse_2(CalcGrammar, "2 * (3 + 4)"))) {
+  if ((match = ft_parse(CalcGrammar, "2 * (3 + 4)"))) {
     printf("Result: %d\n", *(int *)match->data);
   } else {
     printf("parsing error\n");

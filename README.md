@@ -41,7 +41,7 @@ t_parser_ctx *helloGrammar() {
 int main() {
   t_parser_match *match;
 
-  if ((match = ft_parser_2(helloGrammar, "hello world!")))
+  if ((match = ft_parse(helloGrammar, "hello world!")))
     printf("Result: %s\n", match->data); // Output -> "Result: world"
   else
     printf("String doesn't match\n");

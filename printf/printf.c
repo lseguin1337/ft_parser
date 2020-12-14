@@ -6,7 +6,7 @@ void ft_printf(char *s, ...) {
   t_text *text;
   t_flag *flag;
 
-  if ((match = ft_parse_2(printf_parser, s))) {
+  if ((match = ft_parse(printf_parser, s))) {
     chunk = match->data;
     while (chunk) {
       if (*(t_match_type *)chunk->data == TEXT) {
