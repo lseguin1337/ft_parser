@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include "ft_parser.h"
 
+/**
+ * This file is not use by default
+ * in order to use it please run the following command:
+ *   $> make DEBUG=true
+ * 
+ * The purpose of this function is to be able to easily debug your parser
+ * during your development.
+ */
 static t_parser_match *debugFn(t_parser_ctx *ctx, char **s) {
   char *start;
   char *label;

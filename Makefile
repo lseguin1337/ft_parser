@@ -12,7 +12,7 @@
 
 DEBUG_FILE_2:=./src/debug_dev.o
 DEBUG_FILE:=./src/debug.c
-ifdef DEV
+ifdef DEBUG
 DEBUG_FILE_2:=./src/debug.o
 DEBUG_FILE=./src/debug_dev.c
 endif
