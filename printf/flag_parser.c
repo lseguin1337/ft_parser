@@ -44,7 +44,7 @@ static t_parser_ctx *precision() {
     exact("."),
     zeroOrOne(anyOf(
       integer(),
-      characters("*"),
+      exact("*"),
       NULL
     )),
     NULL
@@ -53,13 +53,13 @@ static t_parser_ctx *precision() {
 
 static t_parser_ctx *flagType() {
   return (anyOf(
-    mapTo(characters("s"), &format_string),
-    mapTo(characters("c"), &format_char),
-    mapTo(characters("di"), &format_integer),
-    mapTo(characters("p"), &format_ptr),
-    mapTo(characters("f"), &format_float),
-    mapTo(characters("x"), &format_hex),
-    mapTo(characters("%"), &format_percent),
+    mapTo(character("s"), &format_string),
+    mapTo(character("c"), &format_char),
+    mapTo(character("di"), &format_integer),
+    mapTo(character("p"), &format_ptr),
+    mapTo(character("f"), &format_float),
+    mapTo(character("x"), &format_hex),
+    mapTo(character("%"), &format_percent),
     NULL
   ));
 }
@@ -67,7 +67,7 @@ static t_parser_ctx *flagType() {
 t_parser_ctx *flag() {
   return (map(sequenceOf(
     exact("%"),
-    repeat(characters("+- 0"), 0, 4),
+    repeat(characterInList("+- 0"), 0, 4),
     zeroOrOne(integer()),
     zeroOrOne(precision()),
     zeroOrOne(anyOf(

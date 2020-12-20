@@ -1,27 +1,74 @@
 #include "ft_parser.h"
 
-static t_parser_match *charactersFn(t_parser_ctx *ctx, char **s) {
-  char *value;
-  int i = 0;
+static t_parser_match *match_range(t_parser_match *match) {
+  t_parser_match *first;
+  t_parser_match *second;
+  t_parser_ctx *range;
 
-  value = (char *)ctx->data;
-  if (!value) {
-    if (!(*s)[0])
-      return (NULL);
-    return (createMatch((*s)++, NULL, sizeof(char)));
-  }
-  while ((*s)[0] != value[i] && value[i])
-    i++;
-  if (!value[i])
-    return (NULL);
-  return (createMatch((*s)++, NULL, sizeof(char)));
+  first = match->data;
+  second = get_chunk(first, 2);
+  range = characterRange(*(char *)first->data, *(char *)second->data);
+  destroyMatch(match);
+  return createMatch(range, NULL, 0);
 }
 
-t_parser_ctx *characters(char *value) {
-  int len;
+static t_parser_match *match_char(t_parser_match *match) {
+  char c;
 
-  len = 0;
-  if (value)
-    len = ft_strlen(value) + 1;
-  return (createContext(&charactersFn, NULL, value, len));
+  c = *(char *)match->data;
+  destroyMatch(match);
+  return (createMatch(characterRange(c, c), NULL, 0));
+}
+
+static t_parser_match *create_any(t_parser_match *match) {
+  t_parser_match *item;
+  t_parser_ctx *first;
+
+  first = NULL;
+  item = match->data;
+  while (item) {
+    push_chunk((void **)&first, item->data);
+    item = get_next_chunk(item);
+  }
+  destroyMatch(match);
+  return (createMatch(anyOf(first, NULL), NULL, 0));
+}
+
+static t_parser_ctx *compiler() {
+  return (
+    map(oneOrMore(
+      anyOf(
+        pick(sequenceOf(
+          not(exact("\\")),
+          anyOf(
+            map(sequenceOf(
+              anyCharacter(),
+              exact("-"),
+              anyCharacter(),
+              NULL
+            ), &match_range), // map to range
+            map(anyCharacter(), &match_char),
+            NULL
+          ),
+          NULL
+        ), 1),
+        pick(sequenceOf(
+          exact("\\"),
+          map(anyCharacter(), &match_char),
+          NULL
+        ), 1),
+        NULL
+      )
+    ), &create_any)
+  );
+}
+
+t_parser_ctx *character(char *pattern) {
+  t_parser_match *match;
+  t_parser_ctx *compiled;
+  
+  match = ft_parse(compiler, pattern);
+  compiled = match->data;
+  destroyMatch(match);
+  return (compiled);
 }

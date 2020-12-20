@@ -10,11 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-DEBUG_FILE_2:=./src/debug_dev.o
-DEBUG_FILE:=./src/debug.c
+DEBUG_FLAGS:=
 ifdef DEBUG
-DEBUG_FILE_2:=./src/debug.o
-DEBUG_FILE=./src/debug_dev.c
+DEBUG_FLAGS:=-D DEBUG
 endif
 
 NAME=ftparser.a
@@ -23,7 +21,7 @@ CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
 LDFLAGS=-L.
 LDLIBS=-lft
-SRC = $(DEBUG_FILE) \
+SRC = ./src/debug.c \
 ./src/eof.c \
 ./src/create_context.c \
 ./src/list.c \
@@ -43,6 +41,9 @@ SRC = $(DEBUG_FILE) \
 ./src/parse.c \
 ./src/delete_context.c \
 ./src/character.c \
+./src/characters_in_list.c \
+./src/any_character.c \
+./src/character_range.c \
 ./src/exact.c \
 ./src/not.c \
 ./src/integer.c \
@@ -51,13 +52,12 @@ OBJ = $(SRC:.c=.o)
 INC = ./inc/
 
 $(NAME): $(OBJ)
-		@rm -rf $(DEBUG_FILE_2)
 		@rm -rf $(NAME)
 		ar rc $(NAME) $(OBJ)
 		ranlib $(NAME)
 
 %.o: %.c
-		$(CC) -I. -o $@ -c $? $(CFLAGS)
+		$(CC) -I. -o $@ -c $? $(CFLAGS) $(DEBUG_FLAGS)
 
 all: $(NAME)
 

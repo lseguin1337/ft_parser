@@ -14,14 +14,14 @@ static t_parser_match *create_text(t_parser_match *match) {
   return (match);
 }
 
-static t_parser_ctx *character() {
+static t_parser_ctx *textChar() {
   return (pick(sequenceOf(
     not(exact("%")),
-    characters(NULL),
+    anyCharacter(),
     NULL
   ), 1));
 }
 
 t_parser_ctx *text() {
-  return (map(joinCharacters(oneOrMore(character())), &create_text));
+  return (map(joinCharacters(oneOrMore(textChar())), &create_text));
 }

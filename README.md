@@ -10,7 +10,7 @@ That can be use to parse any text you want. As example there is some small gramm
 
 t_parser_ctx *whitespace() {
   return (
-    oneOrMore(characters(" \t\n\r"))
+    oneOrMore(character(" \t\n\r"))
   );
 }
 
@@ -18,7 +18,7 @@ t_parser_ctx *word() {
   return (
     joinCharacters(oneOrMore(sequenceOf(
       not(whitespace()),
-      characters(NULL),
+      anyCharacter(),
       NULL
     )))
   );

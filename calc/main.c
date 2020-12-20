@@ -36,7 +36,7 @@ static t_parser_match *compute(t_parser_match *match) {
 }
 
 t_parser_ctx *whitespace() {
-  return (zeroOrMore(characters(" \t\n\r")));
+  return (zeroOrMore(character(" \t\n\r")));
 }
 
 t_parser_ctx *Factor() {

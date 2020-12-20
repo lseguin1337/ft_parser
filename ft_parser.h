@@ -35,9 +35,12 @@ t_parser_ctx           *anyOf(t_parser_ctx *firstChild, ...);
 t_parser_ctx           *sequenceOf(t_parser_ctx *firstChild, ...);
 t_parser_ctx           *not(t_parser_ctx *child);
 t_parser_ctx           *exact(char *text);
-t_parser_ctx           *characters(char *chars);
 t_parser_ctx           *repeat(t_parser_ctx *child, int min, int max);
 t_parser_ctx           *eof();
+t_parser_ctx           *characterInList(char *list);
+t_parser_ctx           *anyCharacter();
+t_parser_ctx           *characterRange(char start, char end);
+t_parser_ctx           *character(char *pattern);
 
 t_parser_ctx           *map(t_parser_ctx *child, t_map fn);
 t_parser_ctx           *pick(t_parser_ctx *child, int index);

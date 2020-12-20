@@ -15,7 +15,5 @@ static t_parser_match *toInteger(t_parser_match *match) {
 }
 
 t_parser_ctx *integer() {
-  return (map(oneOrMore(
-    characters("0123456789")
-  ), &toInteger));
+  return (map(oneOrMore(character("0-9")), &toInteger));
 }

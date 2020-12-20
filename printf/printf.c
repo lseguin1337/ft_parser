@@ -18,9 +18,7 @@ void ft_printf(char *s, ...) {
       }
       chunk = get_next_chunk(chunk);
     }
-    
-    printf("succeed\n");
   } else {
-    printf("failure\n");
+    printf("Parsing error\n");
   }
 }
