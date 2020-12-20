@@ -2,7 +2,7 @@
 
 This library is a generic Grammar Library for the C language.
 
-That can be use to parse any text you want. As example there is some small grammar to parse a printf string or a calc.
+That can be use to parse any input you want. As example there is some small grammar to parse a printf string or a calc.
 
 ```c
 #include <stdio.h>
@@ -45,6 +45,35 @@ int main() {
     printf("Result: %s\n", match->data); // Output -> "Result: world"
   else
     printf("String doesn't match\n");
+  return (0);
+}
+```
+## How to debug your grammar?
+
+Re-build the library
+```shell
+make DEBUG=1
+```
+
+then you will be able to use the debug function like this:
+
+```c
+t_parser_ctx *my_grammar() {
+  return (
+    debug(
+      "my_rule",
+      sequenceOf(
+        exact("word"),
+        oneOrMore(charactersInList(" \t\n")),
+        oneOrMore(character("0-9")),
+        NULL
+      )
+    )
+  );
+}
+
+int main() {
+  ft_parse(my_grammar, "word 23!"); // Stdout: [my_rule]: Match: "word 23"
   return (0);
 }
 ```
